@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Student Enrollment Form</title>
+    <script>
+      function enableSaveAndReset() {
+        document.getElementById("saveButton").disabled = false;
+        document.getElementById("resetButton").disabled = false;
+      }
+
+      function enableUpdateAndReset() {
+        document.getElementById("updateButton").disabled = false;
+        document.getElementById("resetButton").disabled = false;
+      }
+
+      function initForm() {
+        // Disable all buttons except Save and Reset
+        document.getElementById("updateButton").disabled = true;
+        document.getElementById("resetButton").disabled = true;
+
+        // Set focus to the Roll No. field (primary key)
+        document.getElementById("rollNo").focus();
+      }
+
+      function checkEmptyFields() {
+        var fields = [
+          "rollNo",
+          "fullName",
+          "class",
+          "birthDate",
+          "address",
+          "enrollmentDate",
+        ];
+        for (var i = 0; i < fields.length; i++) {
+          var fieldValue = document.getElementById(fields[i]).value.trim();
+          if (fieldValue === "") {
+            alert("All fields must be filled.");
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function saveData() {
+        if (checkEmptyFields()) {
+          // Implement code to save data to the database here
+          alert("Data saved successfully.");
+        }
+      }
+
+      function updateData() {
+        if (checkEmptyFields()) {
+          // Implement code to update data in the database here
+          alert("Data updated successfully.");
+        }
+      }
+
+      function resetForm() {
+        document.getElementById("enrollmentForm").reset();
+        initForm();
+      }
+    </script>
+  </head>
+  <body onload="initForm()">
+    <h1>Student Enrollment Form</h1>
+    <form id="enrollmentForm">
+      <label for="rollNo">Roll No:</label>
+      <input type="text" id="rollNo" name="rollNo" rollNo /><br />
+
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" /><br />
+
+      <label for="class">Class:</label>
+      <input type="text" id="class" name="class" /><br />
+
+      <label for="birthDate">Birth Date:</label>
+      <input type="date" id="birthDate" name="birthDate" /><br />
+
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" /><br />
+
+      <label for="enrollmentDate">Enrollment Date:</label>
+      <input type="date" id="enrollmentDate" name="enrollmentDate" /><br />
+
+      <button id="saveButton" onclick="saveData()">Save</button>
+      <button id="updateButton" onclick="updateData()">Update</button>
+      <button id="resetButton" onclick="resetForm()">Reset</button>
+    </form>
+  </body>
+</html>
